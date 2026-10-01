@@ -274,3 +274,25 @@ export JAVA_HOME=/opt/homebrew/opt/openjdk@17
 # 4) 校验签名
 $ANDROID_HOME/build-tools/36.0.0/apksigner verify --print-certs app/build/outputs/apk/release/*.apk
 ```
+
+## 发布记录
+
+- **首次发布**：`v1.11-lj7`（2026-10-01）→ https://github.com/sparky0915/QrAndBarcodeScanner/releases/tag/v1.11-lj7
+- 仓库：https://github.com/sparky0915/QrAndBarcodeScanner （fork 自上游，Unlicense）
+- 提交身份：`sparky0915 <76830469+sparky0915@users.noreply.github.com>`（匿名邮箱）
+- 签名密钥：`~/keystores/barcodescanner.jks`，密码在 `~/keystores/README-密钥说明.txt`（600）
+  Gradle 通过 `~/.gradle/gradle.properties` 的 `BCS_*` 四项读取（**不进仓库**）
+- 证书 SHA-256：`ef9b60a0246bc8e28a1693283d3825dfcc690a4aae00c52906025a6d03ae8205`
+
+### ⚠️ gh CLI 的坑：有 upstream remote 时会解析到上游仓库
+
+本仓库同时有 `origin`（自己的 fork）和 `upstream`（原仓库）两个 remote。
+**gh 在解析仓库时会优先选 upstream**，于是 `gh release create` 跑到了 `wewewe718/...` 上报 404。
+
+**对策：所有 gh 命令显式加 `--repo sparky0915/QrAndBarcodeScanner`。**（`git push origin` 不受影响）
+
+## 尚未做（可选）
+
+- 深色模式下未逐一核对 168 个布局的对比度
+- App 名字仍是上游的 "QR & Barcode Scanner"（改 `values/strings.xml` 的 `app_name` 即可，
+  但改动后需重新发版）
