@@ -297,3 +297,33 @@ $ANDROID_HOME/build-tools/36.0.0/apksigner verify --print-certs app/build/output
 - 深色模式下未逐一核对 168 个布局的对比度
 - App 名字仍是上游的 "QR & Barcode Scanner"（改 `values/strings.xml` 的 `app_name` 即可，
   但改动后需重新发版）
+
+## 阶段 9（2026-10-01）：图标换色 + 首个预设主题色 + 选色页间距
+
+**① 图标：纯色 → 渐变 + 新增单色主题图标层**
+- `drawable/ic_launcher_background.xml`：`#1685A9 → #065279` 对角渐变（渐变必须由矢量承载，
+  颜色资源装不下；自适应图标是 API 26+，矢量渐变无兼容问题）
+- `drawable/ic_launcher_monochrome.xml` + `mipmap-anydpi-v33/*`：Android 13+ 主题图标把单色层交给系统
+  按壁纸调色板染色；**单色层放在 `-v33` 目录**，API 26–32 仍读 `anydpi-v26` 那份不带 monochrome 的
+- 10 张位图按原构图 1:1 重出（方形：0.792 边长圆角方块；圆形：0.917 直径；徽标 0.448 / 0.521）
+- 已弃用的 `@color/ic_launcher_background` 移入废纸篓
+
+**② 第一个预设主题色 → #1685A9（与图标同色）**
+- 预设"blue"的种子就是 `@color/lj_blue_primary`（色点预览也用它），改这一处即可让
+  「种子色 / 色点预览 / 静态兜底色」三者一致
+- **深色模式必须用同一个种子**（M3 从同一种子分别推导亮暗两套方案），故 `values-night` 同步改
+- 顺带把旧的品牌蓝 `@color/blue`（被 `color_accent`／标签选中色／底部导航选中色引用）与
+  自定义取色的初始值 `#00B1FF` 一起对齐到 `#1685A9`
+
+**③ 选色页间距对齐"设置"页**
+- 根因：`activity_choose_theme.xml` 的分组标题**一个间距属性都没写** → 标题贴死左边缘（实测 x=0px），
+  而设置页的标题是 `layout_marginTop=16dp` + `layout_marginBottom=8dp` + `layout_marginHorizontal=16dp`
+- 照抄该写法后实测：标题左边界 **0px → 44px**（与设置页同为 14.7dp）；
+  标题→首行间距 **→ 119px**，与设置页「Appearance→Theme」的 119px **完全一致**
+- 色点行纵向内边距改为上下对称（原为 上16dp / 下0）
+
+### 发布方式说明
+
+本轮**不升版本号**（`1.11-lj` / versionCode 20 不变，属图标与配色的打磨），
+做法是**替换 Release 里已有的 APK asset** 并同步更新说明中的 SHA-256。
+注意：同版本号 + 同签名，已装旧包的人直接覆盖安装即可。

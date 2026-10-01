@@ -23,7 +23,7 @@
         >
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             >
             <com.example.barcodescanner.feature.common.view.SettingsRadioButton
@@ -54,10 +54,14 @@
                 app:text="@string/activity_choose_theme_dark"
                 app:isDelimiterVisible="false"
                 />
+            <!-- 间距与「设置」页的分组标题完全一致（原先什么都没写，标题贴死左边缘、上下间距也不对） -->
             <TextView
                 android:id="@+id/text_view_theme_color_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_margin"
+                android:layout_marginBottom="@dimen/default_margin_small"
+                android:layout_marginHorizontal="@dimen/default_margin"
                 android:text="@string/activity_choose_theme_color"
                 style="@style/SettingsGroupTitleTextViewStyle"
                 />
@@ -78,7 +82,8 @@
                 android:gravity="center"
                 android:paddingStart="@dimen/default_margin"
                 android:paddingEnd="@dimen/default_margin"
-                android:paddingTop="@dimen/default_margin"
+                android:paddingTop="@dimen/default_margin_small"
+                android:paddingBottom="@dimen/default_margin_small"
                 />
 
             <LinearLayout

@@ -33,7 +33,7 @@
 
     
     <!-- ===== 主题色板（M3 roles，脚本生成 2026-10-01）===== -->
-    <color name="lj_blue_primary">#AFC5DE</color>
+    <color name="lj_blue_primary">#1685A9</color>
     <color name="lj_blue_on_primary">#19314D</color>
     <color name="lj_blue_container">#2E4B6B</color>
     <color name="lj_blue_on_container">#DBE5F0</color>
