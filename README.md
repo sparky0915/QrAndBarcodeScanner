@@ -4,7 +4,7 @@
 
 An ad-free Android QR / barcode scanner — a personal fork with Material 3 / Material You theming.
 
-[![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)
+[![License: BSD-3-Clause](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 [![Latest release](https://img.shields.io/github/v/release/sparky0915/QrAndBarcodeScanner)](https://github.com/sparky0915/QrAndBarcodeScanner/releases/latest)
 
 > **This is a personal fork** of [wewewe718/QrAndBarcodeScanner][upstream], based on code released
@@ -86,9 +86,13 @@ export ANDROID_HOME=/path/to/android-sdk
 
 ## License & credits
 
-- Based on [wewewe718/QrAndBarcodeScanner][upstream], released under the **Unlicense** (public
-  domain): free to copy, modify, publish, distribute, commercially or otherwise
-  (see [LICENSE](LICENSE))
+- **Modifications in this fork** (Material 3 theming, HyperOS fixes, the migration and bug fixes):
+  Copyright (c) 2026 sparky0915, **BSD 3-Clause** — see [LICENSE](LICENSE)
+- **Upstream code** [wewewe718/QrAndBarcodeScanner][upstream] is **The Unlicense** (public domain),
+  which imposes no conditions, so this fork may license its own changes under BSD-3-Clause;
+  downstream users keep every public-domain freedom for the upstream parts
+- Bundled libraries keep their own permissive licenses (Apache-2.0 / MIT / BSD / CC0) —
+  see [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md)
 - Scanning is powered by [ZXing][zxing]
 - Upstream translation work happens on [Transifex][transifex] (this fork does not take part)
 

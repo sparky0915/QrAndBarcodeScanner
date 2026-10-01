@@ -4,7 +4,7 @@
 
 无广告的 Android 二维码 / 条码扫描器 —— 个人修改版，主要改动是 Material 3 / Material You 主题化。
 
-[![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)
+[![License: BSD-3-Clause](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 [![Latest release](https://img.shields.io/github/v/release/sparky0915/QrAndBarcodeScanner)](https://github.com/sparky0915/QrAndBarcodeScanner/releases/latest)
 
 > **这是个人修改版（fork）**，fork 自 [wewewe718/QrAndBarcodeScanner][upstream]，
@@ -82,8 +82,13 @@ export ANDROID_HOME=/path/to/android-sdk
 
 ## 许可与致谢
 
-- 基于 [wewewe718/QrAndBarcodeScanner][upstream]，**Unlicense（公有领域）**：可自由复制、修改、
-  发布、分发，商用或非商用皆可（详见 [LICENSE](LICENSE)）
+- **本 fork 的改动**（M3 主题化、HyperOS 适配、工程迁移与各项修复）：
+  Copyright (c) 2026 sparky0915，**BSD 3-Clause**（详见 [LICENSE](LICENSE)）
+- **上游代码** [wewewe718/QrAndBarcodeScanner][upstream] 为 **The Unlicense（公有领域）**，
+  无任何条件，因此本 fork 可将自己的改动以 BSD-3-Clause 发布；下载者对上游部分仍享有
+  公有领域的一切自由
+- 随包分发的第三方库各自保留原许可（Apache-2.0 / MIT / BSD / CC0），清单见
+  [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md)
 - 扫码能力来自 [ZXing][zxing]
 - 上游原版的翻译协作见 [Transifex][transifex]（本 fork 未参与）
 
