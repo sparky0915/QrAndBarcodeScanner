@@ -132,7 +132,7 @@ class Settings(private val context: Context) {
 
     /** 自定义取色（THEME_COLOR == "custom" 时生效），存 ARGB 整数 */
     var themeColorCustom: Int
-        get() = get(Key.THEME_COLOR_CUSTOM, Color.parseColor("#1685A9"))
+        get() = get(Key.THEME_COLOR_CUSTOM, Color.parseColor("#0ABAB5"))
         set(value) = set(Key.THEME_COLOR_CUSTOM, value)
 
     /** 当前主题色对应的种子色；THEME_COLOR_DYNAMIC 无种子（跟随系统壁纸） */
