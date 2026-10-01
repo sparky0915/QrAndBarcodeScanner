@@ -244,3 +244,33 @@ surface 角色来分层。按规范对号入座：
 
 
 
+
+## 阶段 8（2026-10-01）：Release 构建（R8）修复
+
+发布 release 时才暴露的问题（debug 不跑 R8，所以一直没发现）：
+
+**AGP 8 起，R8 的"缺失类"（missing classes）从警告升级为硬错误**，报
+`Execution failed for task ':app:minifyReleaseWithR8'`。缺失的类全部来自
+`org.freemarker:freemarker`（经由 `ez-vcard` → `vinnie` 间接引入），它引用了
+`java.beans.*` / `java.rmi.*` / `javax.swing.*` / `org.jaxen.*` / `org.python.core.*` /
+`com.sun.org.apache.xml.internal.*` 等 Android 上不存在的 JDK 与可选库类。
+
+**修法**：把 AGP 自动生成的 `app/build/outputs/mapping/release/missing_rules.txt`
+（37 条 `-dontwarn`）追加进 `app/proguard-rules.pro`。
+
+**验证**：release 产物从 11M 降到 **5.0M**，装到 Android 14 模拟器切换 4 个页签 + 打开主题页，
+`FATAL EXCEPTION` 计数 0 ✓
+
+## 发布流程（GitHub）
+
+```bash
+# 1) 生成密钥（密码自己保管，别进仓库）
+keytool -genkeypair -v -keystore ~/keystores/barcodescanner.jks \
+  -alias barcodescanner -keyalg RSA -keysize 4096 -validity 10000
+# 2) 写 ~/.gradle/gradle.properties 的 BCS_* 四项
+# 3) 构建
+export JAVA_HOME=/opt/homebrew/opt/openjdk@17
+./gradlew assembleRelease        # → app/build/outputs/apk/release/app-release.apk
+# 4) 校验签名
+$ANDROID_HOME/build-tools/36.0.0/apksigner verify --print-certs app/build/outputs/apk/release/*.apk
+```
