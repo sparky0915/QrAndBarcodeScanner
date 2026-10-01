@@ -1,4 +1,9 @@
-Permissions
+No data collection
+This build contains no analytics, no crash reporting and no ads. Nothing is sent off your
+device. (An earlier upstream version reported crashes to a third-party Sentry project;
+that SDK has been removed from this fork.)
+
+The app requests the following permissions:
 
 1. Camera
 Allows the app to use camera to scan QR codes and barcodes.

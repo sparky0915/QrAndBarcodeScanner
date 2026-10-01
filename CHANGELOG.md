@@ -1,3 +1,8 @@
+> **本仓库是个人修改版（fork）**。以下 1.10 及更早的条目来自上游原版
+> [wewewe718/QrAndBarcodeScanner](https://github.com/wewewe718/QrAndBarcodeScanner)。
+> 本 fork 的版本（`1.11-lj*`）见 [Releases](../../releases)，
+> 改动明细见 [BUILD-NOTES.md](BUILD-NOTES.md)。
+
 # Change Log
 
 ## 1.10
