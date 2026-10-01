@@ -14,7 +14,7 @@
 > **上游原版**请前往 [原仓库][upstream]；本仓库 Release 仅为个人自用构建。
 >
 [![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)
-[![](https://img.shields.io/github/v/release/wewewe718/QrAndBarcodeScanner)](https://github.com/wewewe718/QrAndBarcodeScanner/releases/latest)
+[![](https://img.shields.io/github/v/release/sparky0915/QrAndBarcodeScanner)](https://github.com/sparky0915/QrAndBarcodeScanner/releases/latest)
 
 QR & Barcode Scanner is an ad-free, open-source scanner app. It uses the [ZXing][zxing] scanning library.
 
