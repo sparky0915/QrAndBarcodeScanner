@@ -277,7 +277,8 @@ $ANDROID_HOME/build-tools/36.0.0/apksigner verify --print-certs app/build/output
 
 ## 发布记录
 
-- **首次发布**：`v1.11-lj7`（2026-10-01）→ https://github.com/sparky0915/QrAndBarcodeScanner/releases/tag/v1.11-lj7
+- **首次发布**：`v1.11-lj`（2026-10-01）→ https://github.com/sparky0915/QrAndBarcodeScanner/releases/tag/v1.11-lj
+  （`lj1`–`lj7` 是开发期的内部迭代号，对外首发统一用 `1.11-lj`；versionCode 已从 19 提到 20 以保证能覆盖安装）
 - 仓库：https://github.com/sparky0915/QrAndBarcodeScanner （fork 自上游，Unlicense）
 - 提交身份：`sparky0915 <76830469+sparky0915@users.noreply.github.com>`（匿名邮箱）
 - 签名密钥：`~/keystores/barcodescanner.jks`，密码在 `~/keystores/README-密钥说明.txt`（600）

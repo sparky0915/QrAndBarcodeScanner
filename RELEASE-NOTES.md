@@ -1,4 +1,4 @@
-# v1.11-lj7
+# v1.11-lj
 
 基于 [wewewe718/QrAndBarcodeScanner](https://github.com/wewewe718/QrAndBarcodeScanner) v1.10 的个人修改版
 （上游 **Unlicense**，公有领域）。包名 `com.lawrencej.barcodescanner`，可与原版共存。
