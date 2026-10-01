@@ -382,4 +382,22 @@
     <string name="barcode_format_upc_a" translatable="false">UPC-A</string>
     <string name="barcode_format_upc_e" translatable="false">UPC-E</string>
 
+    <string name="activity_choose_theme_color">Theme color</string>
+    <string name="activity_choose_theme_color_dynamic">Follow system (Material You)</string>
+    <string name="activity_choose_theme_color_blue">Blue</string>
+    <string name="activity_choose_theme_color_teal">Teal</string>
+    <string name="activity_choose_theme_color_green">Green</string>
+    <string name="activity_choose_theme_color_lime">Lime</string>
+    <string name="activity_choose_theme_color_amber">Amber</string>
+    <string name="activity_choose_theme_color_orange">Orange</string>
+    <string name="activity_choose_theme_color_red">Red</string>
+    <string name="activity_choose_theme_color_pink">Pink</string>
+
+    <string name="activity_choose_theme_color_custom">Custom color…</string>
+    <string name="color_picker_hue">Hue</string>
+    <string name="color_picker_saturation">Saturation</string>
+    <string name="color_picker_lightness">Brightness</string>
+
+    <string name="color_picker_hex">Hex color (e.g. #FF00CF)</string>
+
 </resources>

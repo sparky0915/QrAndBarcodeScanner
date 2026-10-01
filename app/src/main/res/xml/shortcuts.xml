@@ -1,5 +1,15 @@
 <shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!--
+      长按图标的快捷方式。
+      ⚠️ 这里的 targetPackage 与 intent action 之前写死成上游包名 com.example.barcodescanner，
+      而本 fork 的 applicationId 是 com.lawrencej.barcodescanner —— 结果长按弹出的快捷方式
+      会去指向"老的 App"（本机装着原版就跳到原版去了）。2026-10-01 修正。
+      action 必须与代码里 BottomTabsActivity 的
+        "${BuildConfig.APPLICATION_ID}.CREATE_BARCODE" / ".HISTORY"
+      保持一致才能切到对应页签。
+    -->
+
     <shortcut
         android:shortcutId="scanFromCamera"
         android:enabled="true"
@@ -8,8 +18,8 @@
         android:shortcutLongLabel="@string/shortcut_scan_from_camera"
         >
         <intent
-            android:action="com.example.barcodescanner.SCAN_FROM_CAMERA"
-            android:targetPackage="com.example.barcodescanner"
+            android:action="com.lawrencej.barcodescanner.SCAN_FROM_CAMERA"
+            android:targetPackage="com.lawrencej.barcodescanner"
             android:targetClass="com.example.barcodescanner.feature.tabs.BottomTabsActivity"
             />
     </shortcut>
@@ -22,8 +32,8 @@
         android:shortcutLongLabel="@string/shortcut_scan_from_file"
         >
         <intent
-            android:action="com.example.barcodescanner.SCAN_FROM_FILE"
-            android:targetPackage="com.example.barcodescanner"
+            android:action="com.lawrencej.barcodescanner.SCAN_FROM_FILE"
+            android:targetPackage="com.lawrencej.barcodescanner"
             android:targetClass="com.example.barcodescanner.feature.tabs.scan.file.ScanBarcodeFromFileActivity"
             />
     </shortcut>
@@ -36,8 +46,8 @@
         android:shortcutLongLabel="@string/shortcut_create_barcode"
         >
         <intent
-            android:action="com.example.barcodescanner.CREATE_BARCODE"
-            android:targetPackage="com.example.barcodescanner"
+            android:action="com.lawrencej.barcodescanner.CREATE_BARCODE"
+            android:targetPackage="com.lawrencej.barcodescanner"
             android:targetClass="com.example.barcodescanner.feature.tabs.BottomTabsActivity"
             />
     </shortcut>
@@ -50,8 +60,8 @@
         android:shortcutLongLabel="@string/shortcut_history"
         >
         <intent
-            android:action="com.example.barcodescanner.HISTORY"
-            android:targetPackage="com.example.barcodescanner"
+            android:action="com.lawrencej.barcodescanner.HISTORY"
+            android:targetPackage="com.lawrencej.barcodescanner"
             android:targetClass="com.example.barcodescanner.feature.tabs.BottomTabsActivity"
             />
     </shortcut>

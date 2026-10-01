@@ -366,4 +366,22 @@
 
     <!--Barcode formats-->
     <string name="barcode_format_qr_code">QR码</string>
+    <string name="activity_choose_theme_color">主题色</string>
+    <string name="activity_choose_theme_color_dynamic">跟随系统（Material You）</string>
+    <string name="activity_choose_theme_color_blue">蓝</string>
+    <string name="activity_choose_theme_color_teal">青</string>
+    <string name="activity_choose_theme_color_green">绿</string>
+    <string name="activity_choose_theme_color_lime">黄绿</string>
+    <string name="activity_choose_theme_color_amber">琥珀</string>
+    <string name="activity_choose_theme_color_orange">橙</string>
+    <string name="activity_choose_theme_color_red">红</string>
+    <string name="activity_choose_theme_color_pink">粉</string>
+
+    <string name="activity_choose_theme_color_custom">自定义颜色…</string>
+    <string name="color_picker_hue">色相</string>
+    <string name="color_picker_saturation">饱和度</string>
+    <string name="color_picker_lightness">明度</string>
+
+    <string name="color_picker_hex">Hex 色值（如 #FF00CF）</string>
+
 </resources>

@@ -1,6 +1,7 @@
 package com.example.barcodescanner.feature.barcode
 
 import android.app.SearchManager
+import android.content.ActivityNotFoundException
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
@@ -745,9 +746,13 @@ class BarcodeActivity : BaseActivity(), DeleteConfirmationDialogFragment.Listene
             flags = flags or Intent.FLAG_ACTIVITY_NEW_TASK
         }
 
-        if (intent.resolveActivity(packageManager) != null) {
+        // ③ 修复：不再用 intent.resolveActivity(packageManager) 预判。
+        // targetSdk 30+ 且未声明 <queries> 时，隐式 http/https intent 的 resolveActivity() 恒为 null，
+        // 结果"打开网址"永远掉进 else 分支弹"没有可用应用"，Quetta 等第三方浏览器根本没机会被唤起。
+        // 改为直接 startActivity 并捕获异常；manifest 已补 <queries>，系统可正常解析到浏览器。
+        try {
             startActivity(intent)
-        } else {
+        } catch (e: ActivityNotFoundException) {
             showToast(R.string.activity_barcode_no_app)
         }
     }

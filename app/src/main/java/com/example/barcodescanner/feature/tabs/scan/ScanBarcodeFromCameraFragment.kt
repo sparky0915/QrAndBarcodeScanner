@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.budiyev.android.codescanner.*
 import com.example.barcodescanner.R
+import com.example.barcodescanner.feature.BaseActivity
 import com.example.barcodescanner.di.*
 import com.example.barcodescanner.extension.*
 import com.example.barcodescanner.feature.barcode.BarcodeActivity
@@ -72,6 +73,10 @@ class ScanBarcodeFromCameraFragment : Fragment(), ConfirmBarcodeDialogFragment.L
             initZoomSeekBar()
             codeScanner.startPreview()
         }
+        // 扫描页是沉浸式的：状态栏透明，让相机预览一直铺到状态栏下。
+        // 必须放在 onResume —— BaseActivity 是在 onPostCreate 里把状态栏设成主题色的，
+        // 而 onPostCreate 晚于 onViewCreated，写在 onViewCreated 会被它覆盖（2026-10-01 实测）。
+        (activity as? BaseActivity)?.applyTransparentStatusBar()
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
@@ -97,6 +102,8 @@ class ScanBarcodeFromCameraFragment : Fragment(), ConfirmBarcodeDialogFragment.L
     override fun onDestroyView() {
         super.onDestroyView()
         setLightStatusBar()
+        // 还原与标题栏同色的状态栏（其余页签都有 app bar）
+        (activity as? BaseActivity)?.applyStatusBarColor()
         disposable.clear()
     }
 

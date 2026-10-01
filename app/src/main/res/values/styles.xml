@@ -1,14 +1,15 @@
 <resources>
 
-    <style name="BaseAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/color_primary</item>
+    <style name="BaseAppTheme" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimaryDark">@color/color_primary_dark</item>
-        <item name="colorAccent">@color/color_accent</item>
-        <item name="android:colorBackground">@color/color_background</item>
+        <item name="colorAccent">?attr/colorPrimary</item>
+        <item name="android:colorBackground">?attr/colorSurface</item>
         <item name="android:textColor">@color/default_text_color</item>
         <item name="android:textColorSecondary">@color/text_color_secondary</item>
         <item name="android:statusBarColor">@color/transparent</item>
-        <item name="android:navigationBarColor">@color/navigation_bar_color</item>
+        <!-- ② 修复：导航栏改为透明（原为不透明色 @color/navigation_bar_color，是与内容分层的直接来源） -->
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightNavigationBar">true</item>
         <item name="android:actionOverflowButtonStyle">@style/ToolbarMenuButtonStyle</item>
     </style>
 
@@ -25,7 +26,7 @@
     <style name="ToolbarStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">?attr/actionBarSize</item>
-        <item name="android:background">@color/toolbar_background_color</item>
+        <item name="android:background">?attr/colorSurfaceContainer</item>
         <item name="titleTextAppearance">@style/ToolbarTitle</item>
         <item name="titleTextColor">@color/toolbar_title_color</item>
     </style>
@@ -81,7 +82,7 @@
     </style>
 
     <style name="SettingsGroupTitleTextViewStyle">
-        <item name="android:textColor">@color/blue</item>
+        <item name="android:textColor">?attr/colorPrimary</item>
         <item name="android:textSize">@dimen/default_text_size_small2</item>
         <item name="android:textStyle">bold</item>
     </style>
@@ -100,7 +101,7 @@
 
     <style name="RadioButtonTheme">
         <item name="colorControlNormal">@color/gray5</item>
-        <item name="colorControlActivated">@color/blue</item>
+        <item name="colorControlActivated">?attr/colorPrimary</item>
         <item name="colorControlHighlight">@android:color/transparent</item>
     </style>
 
@@ -130,7 +131,7 @@
     </style>
 
     <style name="SwitchTheme" parent="Theme.AppCompat.Light">
-        <item name="colorAccent">@color/color_accent</item>
+        <item name="colorAccent">?attr/colorPrimary</item>
         <item name="android:colorForeground">@color/switch_background_color</item>
     </style>
 
@@ -142,12 +143,14 @@
         <item name="android:textColor">@color/edit_text_text_color</item>
         <item name="hintTextColor">@color/edit_text_hint_color</item>
         <item name="android:textColorHint">@color/edit_text_hint_color</item>
-        <item name="android:backgroundTint">@color/blue</item>
+        <item name="android:backgroundTint">?attr/colorPrimary</item>
     </style>
 
     <style name="DialogTheme" parent="Theme.AppCompat.DayNight.Dialog.Alert">
         <item name="android:colorBackground">@color/dialog_background_color</item>
-        <item name="colorAccent">@color/color_accent</item>
+        <item name="colorAccent">?attr/colorPrimary</item>
     </style>
 
+
+    
 </resources>

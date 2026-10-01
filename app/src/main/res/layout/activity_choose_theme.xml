@@ -54,6 +54,68 @@
                 app:text="@string/activity_choose_theme_dark"
                 app:isDelimiterVisible="false"
                 />
+            <TextView
+                android:id="@+id/text_view_theme_color_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_choose_theme_color"
+                style="@style/SettingsGroupTitleTextViewStyle"
+                />
+
+            <com.example.barcodescanner.feature.common.view.SettingsRadioButton
+                android:id="@+id/button_dynamic_color"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:text="@string/activity_choose_theme_color_dynamic"
+                app:isDelimiterVisible="false"
+                />
+
+            <LinearLayout
+                android:id="@+id/layout_theme_colors"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:paddingStart="@dimen/default_margin"
+                android:paddingEnd="@dimen/default_margin"
+                android:paddingTop="@dimen/default_margin"
+                />
+
+            <LinearLayout
+                android:id="@+id/layout_custom_color"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="@dimen/default_margin"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/activity_choose_theme_color_custom"
+                    style="@style/DefaultTextViewStyle"
+                    />
+
+                <FrameLayout
+                    android:id="@+id/frame_custom_color"
+                    android:layout_width="@dimen/theme_color_dot_size"
+                    android:layout_height="@dimen/theme_color_dot_size"
+                    >
+
+                    <View
+                        android:id="@+id/view_custom_color_swatch"
+                        android:layout_width="@dimen/theme_color_dot_inner_size"
+                        android:layout_height="@dimen/theme_color_dot_inner_size"
+                        android:layout_gravity="center"
+                        android:background="@drawable/theme_color_dot"
+                        />
+                </FrameLayout>
+            </LinearLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

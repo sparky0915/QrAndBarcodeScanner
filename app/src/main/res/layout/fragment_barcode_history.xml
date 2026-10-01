@@ -24,10 +24,10 @@
             android:layout_height="wrap_content"
             app:tabTextAppearance="@style/TabTextAppearance"
             app:tabTextColor="@color/tab_layout_text_color_inactive"
-            app:tabSelectedTextColor="@color/tab_layout_text_color_active"
-            app:tabIndicatorColor="@color/tab_layout_text_color_active"
+            app:tabSelectedTextColor="?attr/colorPrimary"
+            app:tabIndicatorColor="?attr/colorPrimary"
             app:tabIndicatorHeight="@dimen/tab_layout_indicator_height"
-            android:background="@color/tab_layout_background_color"
+            android:background="?attr/colorSurface"
             app:tabMode="fixed"
             />
     </com.google.android.material.appbar.AppBarLayout>

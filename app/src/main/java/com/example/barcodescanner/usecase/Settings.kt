@@ -5,7 +5,9 @@ import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Build
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.ContextCompat
 import com.example.barcodescanner.BuildConfig
+import com.example.barcodescanner.R
 import com.example.barcodescanner.extension.unsafeLazy
 import com.example.barcodescanner.model.SearchEngine
 import com.google.zxing.BarcodeFormat
@@ -17,6 +19,67 @@ class Settings(private val context: Context) {
         const val THEME_LIGHT = AppCompatDelegate.MODE_NIGHT_NO
         const val THEME_DARK = AppCompatDelegate.MODE_NIGHT_YES
 
+        // 主题色（Material You 风格）：
+        // THEME_COLOR_DYNAMIC = 跟随系统动态取色（Monet，Android 12+）；
+        // 其余为内置色板，由 res/values/styles.xml 里的 ThemeOverlay.Lj.* 提供 M3 色阶。
+        const val THEME_COLOR_DYNAMIC = "dynamic"
+        const val THEME_COLOR_BLUE = "blue"
+        const val THEME_COLOR_TEAL = "teal"
+        const val THEME_COLOR_GREEN = "green"
+        const val THEME_COLOR_LIME = "lime"
+        const val THEME_COLOR_AMBER = "amber"
+        const val THEME_COLOR_ORANGE = "orange"
+        const val THEME_COLOR_RED = "red"
+        const val THEME_COLOR_PINK = "pink"
+        const val THEME_COLOR_CUSTOM = "custom"
+
+        /** 界面上色点展示顺序 */
+        val THEME_COLOR_PRESETS = listOf(
+            THEME_COLOR_BLUE,
+            THEME_COLOR_TEAL,
+            THEME_COLOR_GREEN,
+            THEME_COLOR_LIME,
+            THEME_COLOR_AMBER,
+            THEME_COLOR_ORANGE,
+            THEME_COLOR_RED,
+            THEME_COLOR_PINK,
+        )
+
+        /**
+         * 各预设色板对应的"种子色"。
+         * 实际配色由 Material 的 content-based DynamicColors 按种子生成整套 M3 色阶
+         * （HCT 算法，与系统 Monet 同源），所以界面上色点显示的是种子色，
+         * 落到控件上的 primary 会是同色系的色调调整值 —— 这正是 M3 的正常表现。
+         */
+        @androidx.annotation.ColorInt
+        fun themeColorSeedRes(themeColor: String): Int {
+            return when (themeColor) {
+                THEME_COLOR_TEAL -> R.color.lj_teal_primary
+                THEME_COLOR_GREEN -> R.color.lj_green_primary
+                THEME_COLOR_LIME -> R.color.lj_lime_primary
+                THEME_COLOR_AMBER -> R.color.lj_amber_primary
+                THEME_COLOR_ORANGE -> R.color.lj_orange_primary
+                THEME_COLOR_RED -> R.color.lj_red_primary
+                THEME_COLOR_PINK -> R.color.lj_pink_primary
+                else -> R.color.lj_blue_primary
+            }
+        }
+
+        /** 色点在界面上显示的预览色 */
+        @androidx.annotation.ColorRes
+        fun themeColorPreviewRes(themeColor: String): Int {
+            return when (themeColor) {
+                THEME_COLOR_TEAL -> R.color.lj_teal_primary
+                THEME_COLOR_GREEN -> R.color.lj_green_primary
+                THEME_COLOR_LIME -> R.color.lj_lime_primary
+                THEME_COLOR_AMBER -> R.color.lj_amber_primary
+                THEME_COLOR_ORANGE -> R.color.lj_orange_primary
+                THEME_COLOR_RED -> R.color.lj_red_primary
+                THEME_COLOR_PINK -> R.color.lj_pink_primary
+                else -> R.color.lj_blue_primary
+            }
+        }
+
         private const val SHARED_PREFERENCES_NAME = "SHARED_PREFERENCES_NAME"
         private var INSTANCE: Settings? = null
 
@@ -27,6 +90,8 @@ class Settings(private val context: Context) {
 
     private enum class Key {
         THEME,
+        THEME_COLOR,
+        THEME_COLOR_CUSTOM,
         INVERSE_BARCODE_COLORS,
         OPEN_LINKS_AUTOMATICALLY,
         COPY_TO_CLIPBOARD,
@@ -56,6 +121,28 @@ class Settings(private val context: Context) {
 
     val isDarkTheme: Boolean
         get() = theme == THEME_DARK || (theme == THEME_SYSTEM && isSystemDarkModeEnabled())
+
+    /**
+     * 主题色。默认 blue（即原 App 的蓝色强调色，保证与旧版观感一致）。
+     * 改这个值后需要让界面重建（Activity.recreate()）才会生效。
+     */
+    var themeColor: String
+        get() = get(Key.THEME_COLOR, THEME_COLOR_BLUE)
+        set(value) = set(Key.THEME_COLOR, value)
+
+    /** 自定义取色（THEME_COLOR == "custom" 时生效），存 ARGB 整数 */
+    var themeColorCustom: Int
+        get() = get(Key.THEME_COLOR_CUSTOM, Color.parseColor("#00B1FF"))
+        set(value) = set(Key.THEME_COLOR_CUSTOM, value)
+
+    /** 当前主题色对应的种子色；THEME_COLOR_DYNAMIC 无种子（跟随系统壁纸） */
+    @get:androidx.annotation.ColorInt
+    val themeColorSeed: Int
+        get() = if (themeColor == THEME_COLOR_CUSTOM) {
+            themeColorCustom
+        } else {
+            ContextCompat.getColor(context, themeColorSeedRes(themeColor))
+        }
 
     var areBarcodeColorsInversed: Boolean
         get() = get(Key.INVERSE_BARCODE_COLORS, false)
@@ -170,6 +257,16 @@ class Settings(private val context: Context) {
     private fun set(key: Key, value: SearchEngine) {
         sharedPreferences.edit()
             .putString(key.name, value.name)
+            .apply()
+    }
+
+    private fun get(key: Key, default: String): String {
+        return sharedPreferences.getString(key.name, default) ?: default
+    }
+
+    private fun set(key: Key, value: String) {
+        sharedPreferences.edit()
+            .putString(key.name, value)
             .apply()
     }
 

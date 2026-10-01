@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/default_margin"
+    >
+
+    <View
+        android:id="@+id/color_preview"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:background="@drawable/shape_color_preview"
+        />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_color_hex"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_margin"
+        android:hint="@string/color_picker_hex"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/input_color_hex"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textCapCharacters"
+            android:maxLength="7"
+            android:singleLine="true"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_margin"
+        android:text="@string/color_picker_hue"
+        style="@style/SmallTextViewStyle"
+        />
+
+    <com.google.android.material.slider.Slider
+        android:id="@+id/slider_hue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:valueFrom="0"
+        android:valueTo="360"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/color_picker_saturation"
+        style="@style/SmallTextViewStyle"
+        />
+
+    <com.google.android.material.slider.Slider
+        android:id="@+id/slider_saturation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:valueFrom="0"
+        android:valueTo="100"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/color_picker_lightness"
+        style="@style/SmallTextViewStyle"
+        />
+
+    <com.google.android.material.slider.Slider
+        android:id="@+id/slider_lightness"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:valueFrom="0"
+        android:valueTo="100"
+        />
+</LinearLayout>

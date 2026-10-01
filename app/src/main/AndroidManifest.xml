@@ -2,8 +2,31 @@
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.barcodescanner"
     >
+
+    <!--
+      ③ 修复：Android 11+ 的软件包可见性。
+      原代码在打开网址前先调用 intent.resolveActivity(packageManager) 判断"有没有应用能处理"，
+      但 targetSdk 30+ 且未声明 <queries> 时，隐式 http/https intent 的 resolveActivity() 一律返回 null，
+      于是 app 直接弹"没有可用应用"的 toast —— 第三方浏览器（Quetta 等）根本没机会被唤起。
+    -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="https" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="http" />
+        </intent>
+        <!-- 生成二维码时需列出可分享的目标应用 -->
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent>
+    </queries>
 
     <!--Normal permissions-->
     <uses-permission android:name="android.permission.VIBRATE"/>
@@ -26,14 +49,11 @@
         android:name=".App"
         >
 
-        <meta-data
-            android:name="io.sentry.dsn"
-            android:value="https://09f3022eb19f4fa7ba332b1f44188ff1@o432234.ingest.sentry.io/5384638"
-            />
+        <!-- 已移除 upstream 作者的 Sentry DSN：fork 版不应把崩溃上报到第三方项目 -->
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.example.barcodescanner.fileprovider"
+            android:authorities="${applicationId}.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true"
             >

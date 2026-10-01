@@ -34,4 +34,9 @@
 
     <dimen name="icon_edit_barcode_name_size">20dp</dimen>
 
+    <!-- 主题色选择 -->
+    <dimen name="theme_color_dot_size">44dp</dimen>
+    <dimen name="theme_color_dot_inner_size">32dp</dimen>
+    <dimen name="theme_color_dot_margin">6dp</dimen>
+
 </resources>

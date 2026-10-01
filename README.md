@@ -1,4 +1,18 @@
 ## Overview
+
+> ### ⚠️ 这是个人修改版（fork） / This is a personal fork
+>
+> fork 自 [wewewe718/QrAndBarcodeScanner][upstream]（**Unlicense，公有领域**）。
+> 相对上游的主要改动：
+> - **Material 3 / Material You 主题化** —— 跟随系统动态取色 + 8 套预设色板 + 自定义取色（HSV + Hex 输入）
+> - **HyperOS / MIUI 适配** —— 底部栏与状态栏分层修复、扫描页沉浸式状态栏
+> - 修复无法唤起第三方浏览器（targetSdk 30+ 的 `<queries>` / `resolveActivity` 门槛）
+> - 修复长按图标的快捷方式指向旧包名
+> - 移除上游作者的 Sentry 上报（不在 fork 里向第三方发送崩溃数据）
+>
+> 完整改动与踩坑记录见 [BUILD-NOTES.md](BUILD-NOTES.md)。
+> **上游原版**请前往 [原仓库][upstream]；本仓库 Release 仅为个人自用构建。
+>
 [![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)
 [![](https://img.shields.io/github/v/release/wewewe718/QrAndBarcodeScanner)](https://github.com/wewewe718/QrAndBarcodeScanner/releases/latest)
 
@@ -6,7 +20,10 @@ QR & Barcode Scanner is an ad-free, open-source scanner app. It uses the [ZXing]
 
 ## Download
 
-<a href="https://play.google.com/store/apps/details?id=org.barcodescanner"><img alt="Get it on Google Play" src="https://github.com/wewewe718/QrAndBarcodeScanner/blob/develop/images/google_play/badge.png" height="60"/></a>   <a href="https://appgallery7.huawei.com/#/app/C102717909"><img alt="Explore it on AppGallery" src="https://github.com/wewewe718/QrAndBarcodeScanner/blob/develop/images/app_gallery/badge.png" height="60"/></a>   <a href="https://www.f-droid.org/en/packages/com.example.barcodescanner/"><img alt="Get it on FDroid" src="https://github.com/wewewe718/QrAndBarcodeScanner/blob/develop/images/fdroid_badge.png" height="60"/></a>   <a href="https://github.com/wewewe718/QrAndBarcodeScanner/releases"><img alt="Get it on Github" src="https://github.com/wewewe718/QrAndBarcodeScanner/blob/develop/images/get-it-on-github.png" height="60"/></a>
+本 fork 的构建见本仓库 [Releases](../../releases)（Android 7.0+，包名 `com.lawrencej.barcodescanner`，可与原版共存）。
+
+**上游原版**的下载渠道（Google Play / AppGallery / F-Droid / GitHub）请见 [原仓库][upstream] —— 那些是上游作者
+发布的官方构建，与本仓库无关。
 
 ## Screenshots
 
@@ -55,6 +72,7 @@ The app can create the following barcode formats:
 * [UPC-A][upc_a]
 * [UPC-E][upc_e]
 
+[upstream]: https://github.com/wewewe718/QrAndBarcodeScanner
 [zxing]: https://github.com/zxing/zxing
 [transifex]: https://www.transifex.com/a-302/qr-barcode-scanner/
 [aztec]: https://en.wikipedia.org/wiki/Aztec_Code

@@ -36,13 +36,15 @@ object BarcodeImageScanner {
         val height = image.height
         val size = width * height
 
-        if (size > bitmapBuffer?.size.orZero()) {
-            bitmapBuffer = IntArray(size)
-        }
+        // 保留原有缓冲区复用逻辑，但改用非空局部变量：
+        // compileSdk 34 的 android.jar 带 @NonNull 注解，Bitmap.getPixels 的参数已是非空 IntArray，
+        // 不能再直接传可空字段（老代码在旧版 Kotlin/AGP 下靠"平台类型"蒙混过关）
+        val buffer = bitmapBuffer?.takeIf { it.size >= size }
+            ?: IntArray(size).also { bitmapBuffer = it }
 
-        image.getPixels(bitmapBuffer, 0, width, 0, 0, width, height)
+        image.getPixels(buffer, 0, width, 0, 0, width, height)
 
-        val source = RGBLuminanceSource(width, height, bitmapBuffer)
+        val source = RGBLuminanceSource(width, height, buffer)
         val bitmap = BinaryBitmap(HybridBinarizer(source))
 
         val reader = MultiFormatReader()
