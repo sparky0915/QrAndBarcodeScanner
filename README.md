@@ -1,61 +1,71 @@
-# QR & Barcode Scanner（个人修改版）
+# QR & Barcode Scanner
+
+[简体中文](https://github.com/sparky0915/QrAndBarcodeScanner/blob/master/README.zh-CN.md)
+
+An ad-free Android QR / barcode scanner — a personal fork with Material 3 / Material You theming.
 
 [![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)
 [![Latest release](https://img.shields.io/github/v/release/sparky0915/QrAndBarcodeScanner)](https://github.com/sparky0915/QrAndBarcodeScanner/releases/latest)
 
-> **这是个人修改版（fork）** / This is a personal fork of
-> [wewewe718/QrAndBarcodeScanner][upstream]，基于 **Unlicense（公有领域）** 代码修改。
-> 完整改动与构建踩坑记录见 [BUILD-NOTES.md](BUILD-NOTES.md)。
-> **上游原版**请前往 [原仓库][upstream] —— 本仓库的构建仅供个人使用。
+> **This is a personal fork** of [wewewe718/QrAndBarcodeScanner][upstream], based on code released
+> under the **Unlicense** (public domain). See [BUILD-NOTES.md](BUILD-NOTES.md) for the full change
+> log and build pitfalls. For the original app, please use the [upstream repository][upstream] —
+> the builds in this repository are personal.
 
-## 相对上游的改动
+## What's different from upstream
 
-**Material 3 / Material You 主题化**
-- 跟随系统动态取色（Android 12+ 的 Monet）
-- 8 套预设色板 蓝 / 青 / 绿 / 黄绿 / 琥珀 / 橙 / 红 / 粉
-- 自定义取色：HSV 三滑块 + Hex 色值输入框，双向联动
-- 按种子色生成整套 M3 色阶（含 surface 系列），标题栏 / 状态栏 / 底部导航 / 内容同色系自然分层
+**Material 3 / Material You theming**
+- System dynamic color (Monet, Android 12+)
+- 8 built-in color schemes: blue / teal / green / lime / amber / orange / red / pink
+- Custom color picker: HSV sliders plus a hex input field, two-way bound
+- A full M3 tonal palette is generated from the seed color, so the app bar, status bar,
+  bottom navigation and content all share one color family with natural tonal steps
 
-**HyperOS / MIUI 适配**
-- 修复底部导航栏与内容之间的"分层"色块（导航栏透明 + 关闭对比度强制）
-- 扫描页保持**沉浸式状态栏**，相机预览铺到状态栏下
+**HyperOS / MIUI fixes**
+- Fixed the banded color block between the bottom navigation bar and the content
+  (transparent navigation bar + disabled contrast enforcement)
+- The Scan tab stays immersive — the camera preview extends behind the status bar
 
-**缺陷修复**
-- 修复 targetSdk 30+ 下无法唤起第三方浏览器（补 `<queries>`，去掉 `resolveActivity` 硬门槛）
-- 修复长按图标的快捷方式指向旧包名
-- 移除上游作者的 Sentry 上报：本构建**不向任何第三方发送数据**
+**Bug fixes**
+- Fixed launching third-party browsers on targetSdk 30+ (added `<queries>`, removed the
+  hard `resolveActivity` gate)
+- Fixed launcher shortcuts pointing at the old package name
+- Removed the upstream author's Sentry reporting: **this build sends no data anywhere**
 
-**工程升级**：Gradle 8.2 / AGP 8.2.2 / compileSdk 34 / JDK 17（Kotlin 锁定 1.7.22，原因见 BUILD-NOTES）
+**Toolchain upgrade**: Gradle 8.2 / AGP 8.2.2 / compileSdk 34 / JDK 17
+(Kotlin is pinned to 1.7.22 — see BUILD-NOTES for why)
 
-## 截图
+## Screenshots
 
 <img src="docs/screenshots/01_scan.png" width="180"/> <img src="docs/screenshots/02_create.png" width="180"/> <img src="docs/screenshots/03_history.png" width="180"/> <img src="docs/screenshots/04_settings.png" width="180"/> <img src="docs/screenshots/05_theme_color.png" width="180"/> <img src="docs/screenshots/06_color_picker.png" width="180"/>
 
-> 扫描页的相机画面是 Android 模拟器的合成测试场景（截图取自模拟器）。
+> The camera preview in the screenshots is the Android emulator's synthetic test scene.
 
-## 下载
+## Download
 
-见本仓库 **[Releases](../../releases)**。
+See the **[Releases](../../releases)** page of this repository.
 
-- Android 7.0+（minSdk 21）
-- 包名 `com.lawrencej.barcodescanner` —— 与上游原版包名不同，**可以共存**
+- Android 7.0+ (minSdk 21)
+- Package name `com.lawrencej.barcodescanner` — different from the upstream app, so **both can be
+  installed side by side**
 
-## 构建
+## Build
 
 ```bash
 export JAVA_HOME=/path/to/jdk17
 export ANDROID_HOME=/path/to/android-sdk
 
-./gradlew assembleDebug      # 调试包
-./gradlew assembleRelease    # 正式包（需自行配置签名，见 BUILD-NOTES.md）
+./gradlew assembleDebug      # debug build
+./gradlew assembleRelease    # release build (configure signing yourself, see BUILD-NOTES.md)
 ```
 
-> ⚠️ Kotlin 必须保持 **1.7.22**：`kotlin-android-extensions` 在 Kotlin 1.8.0 起是硬错误，
-> 而本项目 57 个文件还在用 `kotlinx.android.synthetic`。详见 [BUILD-NOTES.md](BUILD-NOTES.md)。
+> ⚠️ Kotlin must stay at **1.7.22**: `kotlin-android-extensions` is a hard error from Kotlin 1.8.0,
+> and 57 files in this project still use `kotlinx.android.synthetic`.
+> See [BUILD-NOTES.md](BUILD-NOTES.md) for details.
 
-## 支持的条码格式
+## Supported barcode formats
 
-| 读取 | 生成 |
+| Read | Create |
 |---|---|
 | [AZTEC][aztec] | [AZTEC][aztec] |
 | [CODABAR][codabar] | [CODABAR][codabar] |
@@ -74,12 +84,13 @@ export ANDROID_HOME=/path/to/android-sdk
 | [UPC-E][upc_e] | [UPC-E][upc_e] |
 | [UPC-EAN EXTENSION][upc_ean] | |
 
-## 许可与致谢
+## License & credits
 
-- 基于 [wewewe718/QrAndBarcodeScanner][upstream]，**Unlicense（公有领域）**：可自由复制、修改、
-  发布、分发，商用或非商用皆可（详见 [LICENSE](LICENSE)）
-- 扫码能力来自 [ZXing][zxing]
-- 上游原版的翻译协作见 [Transifex][transifex]（本 fork 未参与）
+- Based on [wewewe718/QrAndBarcodeScanner][upstream], released under the **Unlicense** (public
+  domain): free to copy, modify, publish, distribute, commercially or otherwise
+  (see [LICENSE](LICENSE))
+- Scanning is powered by [ZXing][zxing]
+- Upstream translation work happens on [Transifex][transifex] (this fork does not take part)
 
 [upstream]: https://github.com/wewewe718/QrAndBarcodeScanner
 [zxing]: https://github.com/zxing/zxing
